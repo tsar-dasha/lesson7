@@ -23,8 +23,9 @@ public class FormFill {
     private final SelenideElement stateInput = $("#state");
     private final SelenideElement cityInput = $("#city");
     private final SelenideElement submitButton = $("#submit");
-    private final SelenideElement tableResults = $(".table");
-    private final SelenideElement checkResults = $(".table");
+    private final SelenideElement tableResults = $(".table-responsive");
+    private final SelenideElement checkResults = $(".table-responsive");
+
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
