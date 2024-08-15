@@ -26,7 +26,6 @@ public class FormFill {
     private final SelenideElement tableResults = $(".table-responsive");
     private final SelenideElement checkResults = $(".table-responsive");
 
-
     CalendarComponent calendarComponent = new CalendarComponent();
 
     public FormFill openPage() {

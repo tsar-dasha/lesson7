@@ -1,32 +1,25 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.FormFill;
+import pages.utils.TestData;
 
 public class FormFillObjectsTests extends TestBase {
-
     FormFill fillForm = new FormFill();
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String phoneNumber = faker.numerify("##########");
-    String userEmail = faker.internet().emailAddress();
-    String currentAddress = faker.address().city();
-
+    TestData testData = new TestData();
 
     @Test
     void fillFormTest() {
         fillForm.openPage()
                 .removeBanner()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender("Female")
-                .setMobile(phoneNumber)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setGender(testData.genderWrapper)
+                .setMobile(testData.phoneNumber)
                 .clickSubmit()
-                .checkResults("Student Name", firstName + " " + lastName)
-                .checkResults("Gender", "Female")
-                .checkResults("Mobile", phoneNumber);
+                .checkResults("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResults("Gender", testData.genderWrapper)
+                .checkResults("Mobile", testData.phoneNumber);
     }
 
 
@@ -34,39 +27,39 @@ public class FormFillObjectsTests extends TestBase {
     void fillAllFormTest() {
         fillForm.openPage()
                 .removeBanner()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender("Female")
-                .setMobile(phoneNumber)
-                .setDateOfBirth("09", "July", "2022")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.userEmail)
+                .setGender(testData.genderWrapper)
+                .setMobile(testData.phoneNumber)
+                .setDateOfBirth(testData.dayOfBirth, testData.monthOfBirth, testData.yearOfBirth)
                 .setSubject("Maths")
-                .setHobby("Music")
+                .setHobby(testData.selectedHobby)
                 .setPictureUpload("student.jpg")
-                .setAddress(currentAddress)
-                .setState("NCR")
-                .setCity("Delhi")
+                .setAddress(testData.currentAddress)
+                .setState(testData.selectedState)
+                .setCity(testData.selectedCity)
                 .clickSubmit()
-                .checkResults("Student Name", firstName + " " + lastName)
-                .checkResults("Student Email", userEmail)
-                .checkResults("Gender", "Female")
-                .checkResults("Mobile", phoneNumber)
-                .checkResults("Date of Birth", "09 July,2022")
+                .checkResults("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResults("Student Email", testData.userEmail)
+                .checkResults("Gender", testData.genderWrapper)
+                .checkResults("Mobile", testData.phoneNumber)
+                .checkResults("Date of Birth", testData.dayOfBirth + " " + testData.monthOfBirth + "," + testData.yearOfBirth)
                 .checkResults("Subjects", "Maths")
                 .checkResults("Hobbies", "Music")
                 .checkResults("Picture", "student.jpg")
-                .checkResults("Address", currentAddress)
-                .checkResults("State and City", "NCR Delhi");
+                .checkResults("Address", testData.currentAddress)
+                .checkResults("State and City", testData.selectedState + " " + testData.selectedCity);
     }
 
     @Test
     void fillFormNegativeTest() {
         fillForm.openPage()
                 .removeBanner()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender("Female")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.userEmail)
+                .setGender(testData.genderWrapper)
                 .clickSubmit()
                 .checkNoTable();
     }
