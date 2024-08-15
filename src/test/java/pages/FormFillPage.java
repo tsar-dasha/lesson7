@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class FormFill {
+public class FormFillPage {
     private final SelenideElement firstNameInput = $("#firstName");
     private final SelenideElement lastNameInput = $("#lastName");
     private final SelenideElement userEmailInput = $("#userEmail");
@@ -28,91 +28,91 @@ public class FormFill {
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
-    public FormFill openPage() {
+    public FormFillPage openPage() {
         open("/automation-practice-form");
         return this;
     }
 
-    public FormFill removeBanner() {
+    public FormFillPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
 
-    public FormFill setFirstName(String value) {
+    public FormFillPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-    public FormFill setLastName(String value) {
+    public FormFillPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
-    public FormFill setEmail(String value) {
+    public FormFillPage setEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
-    public FormFill setGender(String value) {
+    public FormFillPage setGender(String value) {
         genderWrapper.$(byText(value)).click();
         return this;
     }
 
-    public FormFill setMobile(String value) {
+    public FormFillPage setMobile(String value) {
         userMobileInput.setValue(value);
         return this;
     }
 
-    public FormFill setDateOfBirth(String day, String month, String year) {
+    public FormFillPage setDateOfBirth(String day, String month, String year) {
         calendarInput.click();
         calendarComponent.setDate(day, month, year);
         return this;
     }
 
-    public FormFill setSubject(String value) {
+    public FormFillPage setSubject(String value) {
         subjectInput.setValue(value).pressEnter();
         return this;
     }
 
-    public FormFill setHobby(String value) {
+    public FormFillPage setHobby(String value) {
         hobbyChoosing.$(byText(value)).click();
         return this;
     }
 
-    public FormFill setPictureUpload(String value) {
+    public FormFillPage setPictureUpload(String value) {
         pictureUpload.uploadFromClasspath(value);
         return this;
     }
 
-    public FormFill setAddress(String value) {
+    public FormFillPage setAddress(String value) {
         address.setValue(value);
         return this;
     }
 
-    public FormFill setState(String value) {
+    public FormFillPage setState(String value) {
         stateInput.click();
         stateInput.$(byText(value)).click();
         return this;
     }
 
-    public FormFill setCity(String value) {
+    public FormFillPage setCity(String value) {
         cityInput.click();
         cityInput.$(byText(value)).click();
         return this;
     }
 
-    public FormFill clickSubmit() {
+    public FormFillPage clickSubmit() {
         submitButton.click();
         return this;
     }
 
-    public FormFill checkNoTable() {
+    public FormFillPage checkNoTable() {
         tableResults.shouldNotBe(visible);
         return this;
     }
 
-    public FormFill checkResults(String key, String value) {
+    public FormFillPage checkResults(String key, String value) {
         checkResults.$(byText(key)).parent()
                 .shouldHave(text(value));
         return this;

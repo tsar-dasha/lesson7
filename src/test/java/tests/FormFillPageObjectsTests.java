@@ -1,11 +1,10 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.FormFill;
-import pages.utils.TestData;
+import pages.FormFillPage;
 
-public class FormFillObjectsTests extends TestBase {
-    FormFill fillForm = new FormFill();
+public class FormFillPageObjectsTests extends TestBase {
+    FormFillPage fillForm = new FormFillPage();
     TestData testData = new TestData();
 
     @Test

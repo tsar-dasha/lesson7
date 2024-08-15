@@ -1,4 +1,4 @@
-package pages.utils;
+package tests;
 
 import com.github.javafaker.Faker;
 
